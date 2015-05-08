@@ -76,10 +76,13 @@ function checkEndOfGame() {
             var y = [first.offsetTop, first.offsetTop + first.offsetHeight,
                 second.offsetTop, second.offsetTop + second.offsetHeight];
 
-            var distanceX = Math.abs((x[0] + x[1]) - (x[2] + x[3])) / 2;
-            var distanceY = Math.abs((y[0] + y[1]) - (y[2] + y[3])) / 2;
-            var coverityX = (x[1] - x[0]) / 2 + (x[3] - x[2]) / 2;
-            var coverityY = (y[1] - y[0]) / 2 + (y[3] - y[2]) / 2;
+            // distance - it's a double distance between centers of the segments
+            var distanceX = Math.abs((x[0] + x[1]) - (x[2] + x[3]));
+            var distanceY = Math.abs((y[0] + y[1]) - (y[2] + y[3]));
+
+            // coverity - its sum of length of two segments
+            var coverityX = (x[1] - x[0]) + (x[3] - x[2]);
+            var coverityY = (y[1] - y[0]) + (y[3] - y[2]);
 
             if ((distanceX < coverityX) && (distanceY < coverityY))
                 return false;
